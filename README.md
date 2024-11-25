@@ -134,6 +134,10 @@ You need to Navigate to `setting` and under `plugins` install `docker`. Then you
 
 [OceanAI](https://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Main.HomePage)
 
+[VRX_solved](https://github.com/Tinker-Twins/SINGABOAT-VRX/tree/main)
+
+
+
 
 ## Authors
 Ali Srour <br>
