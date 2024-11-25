@@ -25,17 +25,53 @@ cd dockwater
 ./build.bash humble
 
 ```
-**Now you have the image installed, you can attach it to your cloned ros2-ws and do your work inside a container**
+**Now you have the image installed, you can attach it to your cloned repo in ROS2 work space and do your work inside a container**
 
-# Setup your ros2-ws
+# Setup your ROS2 
 
 ```
 mkdir -p vrx_ws/src
 cd vrx_ws/src
-git clone 
+git clone http://gitlab.sts.seaowl.com:9004/asr/vrx.git
+```
+You dont have to build your project yet. We need to start a docker container and source/build the project there so
+
+```
+cd ..
+cat> create_vrx_ros2.sh
+```
+In the created shell script type the following:
+
+```
+# enable access to xhost from the container
+xhost +
+
+# Run docker and open bash shell
+docker run -it --privileged \
+--env=LOCAL_USER_ID="$(id -u)" \
+--env "DISPLAY" \
+-v $(pwd):/home/user/vrx_ws:rw \
+--network host \
+--workdir="/home/user/" \
+--name=vrx_ros2 dockwater:humble
 ```
 
+This will enable you to start a docker container for your workspace. This script can be called from terminal as follows:
 
+```
+./create_vrx_ros2.sh
+```
+
+Your running container would be called **vrx_ros2** and based on the dockerwater:humble image
+
+
+
+
+
+
+
+
+## Tutorials from the OSRF-VRX
 # Virtual RobotX (VRX)
 This repository is the home to the source code and software documentation for the VRX simulation environment, which supports simulation of unmanned surface vehicles in marine environments.
 * Designed in coordination with RobotX organizers, this project provides arenas and tasks similar to those featured in past and future RobotX competitions, as well as a description of the WAM-V platform.
