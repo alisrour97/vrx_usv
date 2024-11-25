@@ -15,6 +15,27 @@ sudo usermod -aG docker $USER
 ```
 **Now log out and in again before using docker!!**
 
+# Docker Image?
+
+Inorder to have all the necessary dependencies from linux version, python packages etc.. You need to create a docker image. Luckily on [Docker Hub](https://hub.docker.com/) there is already an image that contains the dependencies, so clone and run:
+
+```
+git clone https://github.com/Field-Robotics-Lab/dockwater.git
+cd dockwater
+./build.bash humble
+
+```
+**Now you have the image installed, you can attach it to your cloned ros2-ws and do your work inside a container**
+
+# Setup your ros2-ws
+
+```
+mkdir -p vrx_ws/src
+cd vrx_ws/src
+git clone 
+```
+
+
 # Virtual RobotX (VRX)
 This repository is the home to the source code and software documentation for the VRX simulation environment, which supports simulation of unmanned surface vehicles in marine environments.
 * Designed in coordination with RobotX organizers, this project provides arenas and tasks similar to those featured in past and future RobotX competitions, as well as a description of the WAM-V platform.
