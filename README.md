@@ -130,7 +130,9 @@ From Visual code extensions install `Dev Containers` and `Docker`. You can run `
 You need to Navigate to `setting` and under `plugins` install `docker`. Then you can navigate to services `add service` and configure your docker. You always should be able to run from your workplace pycharm outside the container by `pycharm-community .`
 
 
+# Useful links
 
+[OceanAI](https://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Main.HomePage)
 
 
 ## Authors
