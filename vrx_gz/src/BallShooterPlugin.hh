@@ -60,6 +60,7 @@ namespace vrx
 ///   <shot_force>250</shot_force>
 ///   <topic>my_robot/ball_shooter/fire</topic>
 /// </plugin>
+
 class BallShooterPlugin
     : public gz::sim::System,
       public gz::sim::ISystemConfigure,
