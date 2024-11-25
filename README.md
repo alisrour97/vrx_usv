@@ -80,7 +80,22 @@ source install/setup.bash
 
 By now you have everything set to run the launch scripts or work within your environment.
 
+Try running the following laucnh file from docker in your vrx_ws
+
+```
+ros2 launch vrx_gz competition.launch.py world:=sydney_regatta
+```
+
+This would take some time to execute and open gazebo, but if it works then congratulations.
+
 # Useful Docker tips?
+
+if the container is running but you used `ctrl+d` and you want to reopen, then you type 
+
+```
+docker start vrx_ros2
+docker attach vrx_ros2
+```
 
 To display running containers type:
 
@@ -106,9 +121,16 @@ To check logs of the container and changes
 docker logs <container_id>
 ```
 
-# How to open Visual Code inside the container?
+# How to configure Visual Code with the container?
 
-From Visual code extensions install [Dev Containers] and [Docker]
+From Visual code extensions install `Dev Containers` and `Docker`. You can run `code .` from your workspace outside the container to open VS and then from the command palette `shift + ctrl + p` you can type `Dev Containers` and attach a running container
+
+# How to open pycharm with the container?
+
+You need to Navigate to `setting` and under `plugins` install `docker`. Then you can navigate to services `add service` and configure your docker. You always should be able to run from your workplace pycharm outside the container by `pycharm-community .`
+
+
+
 
 
 ## Authors
