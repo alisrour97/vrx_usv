@@ -62,13 +62,57 @@ This will enable you to start a docker container for your workspace. This script
 ./create_vrx_ros2.sh
 ```
 
-Your running container would be called **vrx_ros2** and based on the dockerwater:humble image
+Your running container would be called **vrx_ros2** and based on the **dockerwater:humble image**
+
+If instead you have already started the container in a terminal and want to open another terminal in the container, run the command
+```
+docker exec -u 0 -it vrx_ros2 bash
+```
+
+Now navigate inside your docker container to the ROS2 workspace, inside the workspace, you have to source ROS2 and build your repo:
+
+```
+source /opt/ros/humble/setup.branch
+colcon build --merge-install
+source install/setup.bash
+
+```
+
+By now you have everything set to run the launch scripts or work within your environment.
+
+# Useful Docker tips?
+
+To display running containers type:
+
+```
+docker ps -a
+```
+
+To remove a container
+
+```
+docker rm [container_name]
+```
+To delete images
+
+```
+docker images
+docker rmi $[image_id]
+```
+
+To check logs of the container and changes
+
+```
+docker logs <container_id>
+```
+
+# How to open Visual Code inside the container?
+
+From Visual code extensions install [Dev Containers] and [Docker]
 
 
-
-
-
-
+## Authors
+Ali Srour <br>
 
 
 ## Tutorials from the OSRF-VRX
