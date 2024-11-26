@@ -146,6 +146,11 @@ Rebuild the image, the changes are saved in the image under same name
 
 ```
 docker build -t dockwater:humble .
+
+# docker commit could be used as well to save minor changes to the bash 
+
+docker commit <container-id> dockwater:humble
+
 ```
 
 # How to configure Visual Code with the container?
