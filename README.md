@@ -121,6 +121,33 @@ To check logs of the container and changes
 docker logs <container_id>
 ```
 
+When needed to install some requiremnts in docker, then you can do it with `pip` or `apt-get` but it is necessary to build your image again, so
+
+```
+#Navigate to you Dockerfile
+cd ../dockwater/humble/
+#run the following to build the same docker image with same docker name
+docker build -t dockwater:humble .
+```
+You don't need to exit the current container, changes take place even if you open another container instance
+
+Also another technique especially works well to install python packages and dependencies is by creating a `requirements.txt` in the same directory of the `Dockerfile` with adding these to lines to `Dockfile`
+
+```
+# Copy the requirements file into the container Dockfile
+COPY requirements.txt .
+
+# Install the specific version and other dependencies in Dockfile
+RUN pip install --no-cache-dir -r requirements.txt
+
+```
+
+Rebuild the image, the changes are saved in the image under same name
+
+```
+docker build -t dockwater:humble .
+```
+
 # How to configure Visual Code with the container?
 
 From Visual code extensions install `Dev Containers` and `Docker`. You can run `code .` from your workspace outside the container to open VS and then from the command palette `shift + ctrl + p` you can type `Dev Containers` and attach a running container
