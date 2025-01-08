@@ -1,4 +1,4 @@
-
+﻿
 # How to install Docker on your host machine?
 
 There is a convinient script that facilitate everything
@@ -72,7 +72,7 @@ docker exec -u 0 -it vrx_ros2 bash
 Now navigate inside your docker container to the ROS2 workspace, inside the workspace, you have to source ROS2 and build your repo:
 
 ```
-source /opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.branch
 colcon build --merge-install
 source install/setup.bash
 
@@ -159,7 +159,74 @@ From Visual code extensions install `Dev Containers` and `Docker`. You can run `
 
 # How to open pycharm with the container?
 
-You need to Navigate to `setting` and under `plugins` install `docker`. Then you can navigate to services `add service` and configure your docker. You always should be able to run from your workplace pycharm outside the container by `pycharm-community .`
+You need to Navigate to `setting` and under `plugins` install `docker`. Then you can navigate to services `add service` and configure your docker. You always should be able to run from your workplace pycharm outside the container by `pycharm-community .` 
+Make sure that the python interpreter is selected from the python environment inside the docker
+
+# How to build a new ROS2 pkg?
+
+In your `ws` write in the terminal the following, while doing a `pkg` for dynamic positioning 
+
+```
+ros2 pkg create --build-type ament_python dynamic_positioning
+```
+
+Navigate the `pkg`
+
+```
+cd ~/ros2_ws/src/dynamic_positioning/dynamic_positioning
+```
+
+Create the file for your node
+
+```
+touch dynamic_positioning_node.py
+chmod +x dynamic_positioning_node.py
+```
+
+Edit your node to publish and subscribe to topics, then update the `setup.py` file in the root of your `pkg` to register the executable node in the `entry_points` as follows:
+
+```
+entry_points={
+    'console_scripts': [
+        'dynamic_positioning_node = dynamic_positioning.dynamic_positioning_node:main',
+    ],
+},
+
+```
+Now you can build and run the `pkg` by using `ros2 run` as follows
+
+```
+cd ~/ros2_ws
+colcon build --merge-install --packages-select dynamic_positioning
+source install/setup.bash
+ros2 run dynamic_positioning dynamic_positioning_node
+
+```
+
+To listen to topics:
+
+```
+ros2 topic list
+
+```
+
+To make a launch file inside the `pkg` do the following and generate the launch describtion
+
+```
+mkdir launch
+touch launch/dynamic_positioning.launch.py
+```
+
+And thus one call the new launch file by: 
+
+```
+ros2 launch dynamic_positioning dynamic_positioning.launch.py
+
+```
+However, make sure that `setup.py` is set correctly where `pkg` should be added to the `data_files` entry and then sourced and build before use.
+
+
+
 
 
 # Useful links
