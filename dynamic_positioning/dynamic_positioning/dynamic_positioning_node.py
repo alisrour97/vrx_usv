@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32
+from std_msgs.msg import Float64
 
 
 class DynamicPositioningNode(Node):
@@ -9,8 +9,8 @@ class DynamicPositioningNode(Node):
         super().__init__('dynamic_positioning_node')
 
         # Create publishers
-        self.pos_publisher = self.create_publisher(Float32, '/wamv/thrusters/middle/pos', 10)
-        self.thrust_publisher = self.create_publisher(Float32, '/wamv/thrusters/middle/thrust', 10)
+        self.pos_publisher = self.create_publisher(Float64, '/wamv/thrusters/right/pos', 10)
+        self.thrust_publisher = self.create_publisher(Float64, '/wamv/thrusters/right/thrust', 10)
 
         # Timer to publish data periodically
         self.timer = self.create_timer(0.5, self.publish_data)
@@ -21,13 +21,13 @@ class DynamicPositioningNode(Node):
 
     def publish_data(self):
         # Create and publish position message
-        pos_msg = Float32()
+        pos_msg = Float64()
         pos_msg.data = self.pos_value
         self.pos_publisher.publish(pos_msg)
         self.get_logger().info(f'Published position: {self.pos_value}')
 
         # Create and publish thrust message
-        thrust_msg = Float32()
+        thrust_msg = Float64()
         thrust_msg.data = self.thrust_value
         self.thrust_publisher.publish(thrust_msg)
         self.get_logger().info(f'Published thrust: {self.thrust_value}')

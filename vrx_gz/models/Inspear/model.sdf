@@ -1,0 +1,26 @@
+<model name="Inspear">
+  <!-- Important: give the link a name, e.g. "link", and add inertia -->
+  <link name="link">
+    <!-- Inertial block so Gazebo sees a real mass -->
+    <inertial>
+      <mass>10.0</mass>
+      <inertia>
+        <ixx>1.0</ixx>
+        <ixy>0.0</ixy>
+        <ixz>0.0</ixz>
+        <iyy>1.0</iyy>
+        <iyz>0.0</iyz>
+        <izz>1.0</izz>
+      </inertia>
+    </inertial>
+    <!-- Visual for something to see (could be a mesh) -->
+    <visual name="visual">
+      <geometry>
+        <mesh>
+          <uri>InSPEAR.stl</uri>
+          <scale>0.001 0.001 0.001</scale>
+        </mesh>
+      </geometry>
+    </visual>
+  </link>
+</model>
